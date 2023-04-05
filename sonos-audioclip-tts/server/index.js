@@ -457,6 +457,7 @@ app.get("/api/speakHassAll", async (req, res) => {
   const exclude = req.query.exclude
   const volume = req.query.volume
   const priority = req.query.prio
+  const lang = req.query.lang
   const hassUrl = "http://supervisor/core"
   const hassToken = process.env.SUPERVISOR_TOKEN
 
@@ -470,7 +471,7 @@ app.get("/api/speakHassAll", async (req, res) => {
   let ttsbody = {
     platform: "cloud",
     language: config.CLOUD_TTS_LANGUAGE,
-    options: { gender: config.CLOUD_TTS_GENDER },
+    options: { gender: lang || config.CLOUD_TTS_GENDER },
     message: text,
   }
 
